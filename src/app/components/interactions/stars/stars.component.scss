@@ -1,0 +1,31 @@
+.rate-container {
+    position: relative;
+
+    .stars-container {
+        display: flex;
+        position: absolute;
+        top: 131%;
+        background: rgb(255 255 255);
+        padding: 10px;
+        border-radius: 8px;
+
+        .unrate {
+            border: none;
+            background: none;
+        }
+
+
+        .br-unit-inner {
+            &::before {
+                font-family: FontAwesome;
+                content: "★" !important;
+            }
+        }
+
+        .fa-minus-circle {
+            &::before {
+                color: #000;
+            }
+        }
+    }
+}

@@ -1,0 +1,12 @@
+<div class="rate-container">
+    <button class="dropdown-item" (click)="displayStars()"><i class="fa fa-star" aria-hidden="true"
+            style="color: gold;"></i>
+        <span>
+            Rate Movie
+        </span>
+    </button>
+    <div class="stars-container" *ngIf="showStars">
+        <button class="unrate" (click)="onUnrate()"><i class="fa fa-minus-circle" aria-hidden="true"></i></button>
+        <bar-rating [(rate)]="rate" [max]="10" [theme]="'default'" (rateChange)="onRateChange($event)"></bar-rating>
+    </div>
+</div>

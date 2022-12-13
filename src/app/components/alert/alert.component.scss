@@ -1,0 +1,16 @@
+#alert {
+    animation: fadeInOutAnimation 1.5s;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes fadeInOutAnimation {
+    from {
+        opacity: 0;
+        right: -100%;
+    }
+
+    to {
+        opacity: 1;
+        right: 1rem;
+    }
+}

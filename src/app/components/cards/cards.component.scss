@@ -1,0 +1,92 @@
+.wrapper {
+    display: flex;
+    gap: 1rem;
+    overflow-x: scroll;
+    overflow-y: hidden;
+
+    .info {
+        z-index: 2;
+        padding: 0;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+
+        .title {
+            background: rgb(52 128 52);
+            bottom: 28px;
+            -webkit-clip-path: polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%);
+            clip-path: polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%);
+            font-size: 14px;
+            font-weight: 500;
+            left: -5px;
+            line-height: 32px;
+            max-width: 99%;
+            overflow: hidden;
+            padding-left: calc(1rem + 5px);
+            padding-right: 21px;
+            position: absolute;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: -webkit-fit-content;
+            width: -moz-fit-content;
+            width: fit-content;
+            z-index: 4;
+            margin: 0;
+        }
+
+        .card-text {
+            font-size: 11px;
+            font-weight: 500;
+        }
+    }
+
+}
+
+.wrapper::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: transparent;
+}
+
+.wrapper::-webkit-scrollbar {
+    height: 8px;
+    cursor: pointer;
+    background: transparent;
+}
+
+.wrapper::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgb(168, 168, 168);
+}
+
+#cards-holder {
+    width: 200px;
+    height: 300px;
+    margin: 0;
+    padding: 0;
+}
+
+#dorpdown-button {
+    background-color: rgb(0 0 0 / 40%);
+    border-radius: 50%;
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+    right: 0.5rem;
+    top: 0.5rem;
+    border: none;
+    display: flex;
+    justify-content: center;
+
+    &::after {
+        content: none;
+    }
+}
+
+.wrapper-display {
+    display: flex;
+
+    .wrapper {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,95 @@
+.row {
+    margin-top: 2rem;
+}
+
+.wraper {
+    background: linear-gradient(145deg, rgb(240 240 240), rgb(202 202 202));
+    border-radius: 8px;
+    box-shadow: 5px 5px 10px #bcbcbc, -5px -5px 10px #fff;
+    margin-top: 3rem;
+    padding: 35px 20px;
+    margin: 0;
+}
+
+/* The switch - the box around the slider */
+.switch {
+    font-size: 17px;
+    position: relative;
+    display: inline-block;
+    width: 5.2em;
+    height: 2em;
+    overflow: hidden;
+    margin-left: 1rem;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 25px;
+    background-color: #eee;
+    transition: .4s;
+    border-radius: 30px;
+    background: rgb(147 147 147);
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 1em;
+    width: 1em;
+    border-radius: 20px;
+    left: 0.4em;
+    bottom: 4px;
+    background-color: rgb(255 255 255);
+    transition: 0.4s;
+}
+
+input:checked+.slider {
+    background-color: rgb(233 22 65);
+}
+
+input:checked+.slider:before {
+    transform: translateX(3em);
+}
+
+.switch .text {
+    position: absolute;
+    top: 40%;
+    font-size: 14px;
+    pointer-events: none;
+    text-transform: uppercase;
+    transform: translateY(-50%);
+    transition: .4s;
+}
+
+.switch .text.on {
+    left: .8rem;
+    transform: translateX(-4rem) translateY(-50%);
+}
+
+.switch .text.off {
+    color: rgb(77 77 77);
+    right: .8rem;
+    font-weight: 600;
+}
+
+input:checked~.text.off {
+    transform: translateX(3rem) translateY(-50%);
+}
+
+input:checked~.text.on {
+    color: rgb(255 255 255);
+    transform: translateX(-0.4rem) translateY(-50%);
+}

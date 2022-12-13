@@ -1,0 +1,23 @@
+.aside {
+    width: 300px;
+
+    .filters {
+        background-color: rgb(224 224 224) !important;
+        box-shadow: 3px 3px 10px #bebebe, -24px 24px 1px #fff;
+        overflow: visible;
+        position: fixed;
+        width: 300px;
+        height: fit-content;
+
+        ul {
+            padding: 20px;
+            list-style: none;
+
+            li {
+                display: grid;
+
+
+            }
+        }
+    }
+}

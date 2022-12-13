@@ -1,0 +1,6 @@
+<button class="dropdown-item" (click)="addRemoveFav()">
+    <i class="fa fa-heart" aria-hidden="true" [ngStyle]="{'color': itemExists ? 'pink' : 'white'}"></i>
+    <span>
+        {{itemExists? "Remove from favorite": "Add to favorite"}}
+    </span>
+</button>

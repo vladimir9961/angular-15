@@ -1,0 +1,13 @@
+<ul class="dropdown-menu {{show}}" id="dorpdown-list">
+    <li><app-lists [IdOfItem]=" IdOfItem" [TYPE_OF_FETCHED_DATA]="TYPE_OF_FETCHED_DATA" [Name]="Name"></app-lists></li>
+    <li>
+        <app-favorite [IdOfItem]="IdOfItem" [Name]="Name" [TYPE_OF_FETCHED_DATA]="TYPE_OF_FETCHED_DATA">
+        </app-favorite>
+
+    </li>
+    <li>
+        <app-watchlists [IdOfItem]="IdOfItem" [Name]="Name"
+            [TYPE_OF_FETCHED_DATA]="TYPE_OF_FETCHED_DATA"></app-watchlists>
+    </li>
+    <li><app-stars [TYPE_OF_FETCHED_DATA]="TYPE_OF_FETCHED_DATA" [Name]="Name" [IdOfItem]="IdOfItem"></app-stars></li>
+</ul>

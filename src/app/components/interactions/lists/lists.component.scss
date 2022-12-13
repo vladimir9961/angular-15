@@ -1,0 +1,20 @@
+.lists-parent {
+    position: relative;
+    margin-left: auto;
+    display: flex;
+
+    .lists-holder {
+        position: absolute;
+        right: -118px;
+        background: rgb(255 255 255);
+
+        ul {
+            list-style: none;
+            padding: 0;
+
+            li {
+                padding: 5px 30px;
+            }
+        }
+    }
+}

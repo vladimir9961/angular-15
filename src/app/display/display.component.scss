@@ -1,0 +1,90 @@
+.background-img {
+    background-size: 100% 100%;
+    height: 80%;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+}
+
+.hero-img {
+    height: auto;
+    width: 100%;
+}
+
+.background-col {
+    background: linear-gradient(5deg, rgb(2 0 36) 33%, rgb(221 221 232 / 0%) 70%);
+    height: 100vh;
+    width: 100%;
+
+    .holder-elements {
+        color: white;
+        align-items: flex-end;
+        display: flex;
+        height: 100%;
+
+        .movie-data {
+            display: flex;
+            gap: 0.5rem;
+        }
+    }
+}
+
+.col {
+    height: 410px;
+    display: grid;
+}
+
+.sect-two {
+    width: 50%;
+
+    .holder {
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-bottom: 10px;
+        width: 100%;
+
+        &::-webkit-scrollbar-track {
+            border-radius: 10px;
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar {
+            height: 8px;
+            cursor: pointer;
+            background: transparent;
+
+        }
+
+        &::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-color: rgb(168, 168, 168);
+        }
+
+        .list-group {
+            align-items: center;
+            display: flex;
+            gap: 0.5rem;
+            height: 100%;
+            justify-content: center;
+            padding: 1rem 0.5rem;
+            width: -webkit-fit-content;
+            width: -moz-fit-content;
+            width: fit-content;
+            flex-direction: row;
+
+            .card {
+                background: none;
+
+                img {
+                    border-radius: 8px;
+                }
+
+                .card-title {
+                    bottom: 1rem;
+                    position: absolute;
+                }
+            }
+        }
+
+    }
+}

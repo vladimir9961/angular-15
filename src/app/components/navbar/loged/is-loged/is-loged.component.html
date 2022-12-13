@@ -1,0 +1,12 @@
+<div class="btn-group dropstart">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+        style="background: none;
+    border: none;" aria-expanded="false">
+        <img style="border-radius: 50%;" src="{{userimg}}" alt="">
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a style="font-weight: 700; cursor: default;" class="dropdown-item" href="#">{{username | uppercase}}</a>
+        </li>
+        <li><a class="dropdown-item" href="#" (click)="logOutUser()">Logout</a></li>
+    </ul>
+</div>

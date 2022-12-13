@@ -1,0 +1,13 @@
+<div *ngIf="TYPE_OF_FETCHED_DATA != 'tv'" class="lists-parent">
+    <button class="dropdown-item" (click)="toggleListsView()">
+        <i class="fa fa-list" aria-hidden="true"></i>
+        <span>
+            lists
+        </span>
+    </button>
+    <div class="lists-holder" *ngIf="showLists">
+        <ul>
+            <li *ngFor="let lists of createdLists" (click)="addToLists(lists.id, lists.name)">{{lists.name}}</li>
+        </ul>
+    </div>
+</div>

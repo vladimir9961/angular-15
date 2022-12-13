@@ -1,0 +1,34 @@
+<div style=" width: 100%; justify-content: center;" class="container">
+    <div class="row" style="display: flex;">
+        <div style=" overflow:hidden;" class="wraper">
+            <div style="display: flex;">
+                <h1>Popular</h1>
+                <label class="switch">
+                    <input type="checkbox" (click)="toogleMovieTv($event)">
+                    <span class="slider"></span>
+                    <span class="text on">Movie</span>
+                    <span class="text off">Tv</span>
+                </label>
+            </div>
+            <app-cards [FETCHED_DATA]="FETCHED_DATA_POPULAR" [TYPE_OF_FETCHED_DATA]="TYPE_OF_FETCHED_DATA_POPULAR">
+            </app-cards>
+        </div>
+    </div>
+    <div class="row">
+        <div style=" overflow:hidden;" class="wraper">
+            <div style="display: flex;">
+                <h1>Top Rated</h1>
+                <label class="switch">
+                    <input type="checkbox" (click)="toogleMovieTvTopRated($event)">
+                    <span class="slider"></span>
+                    <span class="text on">Movie</span>
+                    <span class="text off">Tv</span>
+                </label>
+            </div>
+            <app-cards [FETCHED_DATA]="FETCHED_DATA_TOP_RATED"
+                [TYPE_OF_FETCHED_DATA]="TYPE_OF_FETCHED_DATA_TOP_RATED"></app-cards>
+        </div>
+    </div>
+</div>
+<app-alert></app-alert>
+<router-outlet></router-outlet>

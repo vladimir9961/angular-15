@@ -1,0 +1,64 @@
+<div class="container-fluid p-0" id="user-interaction">
+    <div class="background-img">
+        <img class="hero-img" src="https://www.themoviedb.org/t/p/w1280{{movieData?.backdrop_path}}"
+            alt="{{movieData?.original_title}}">
+    </div>
+    <div class="background-col">
+        <div class="holder-elements">
+            <div class="col">
+                <h1>{{movieData?.original_title || movieData?.name}}</h1>
+                <div class="movie-data">
+                    <span>
+                        <i aria-hidden="true" class="fa fa-star"></i>
+                        {{movieData?.vote_average}} | {{movieData?.vote_count}}
+                    </span>
+                    <span>{{runtimeHours}}h {{runtimeMin}}m</span>
+                    <span>
+                        {{movieData?.release_date ? (movieData?.release_date | date: 'yyyy') :
+                        (movieData?.first_air_date |
+                        date: 'yyyy')}}
+                    </span>
+                </div>
+                <div class="movie-genres">
+                    <span *ngFor="let genre of movieData?.genres">
+                        {{genre?.name}}
+                    </span>
+                </div>
+                <div style="height:50px;" *ngIf="userExist">
+                    <app-holder [IdOfItem]="getIdFromUrl" [Name]="title"
+                        [TYPE_OF_FETCHED_DATA]="TYPE_OF_FETCHED_DATA"></app-holder>
+                </div>
+                <div *ngIf="!userExist" class="fst-italic">You need to login to see this!</div>
+                <div class="overview">
+                    <h3>Overview</h3>
+                    {{movieData?.overview}}
+                </div>
+            </div>
+            <div class="col sect-two">
+                <h2>Similar</h2>
+                <div class="holder">
+                    <div class="list-group list-group-horizontal list-group">
+                        <div class="card" *ngFor="let item of SimilarObject">
+                            <img src="https://www.themoviedb.org/t/p/w780{{item?.backdrop_path}}" style="width: 300px;">
+                            <div class="card-img-overlay">
+                                <div class="text-white card-title">{{item.title}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h2>Actors</h2>
+                <div class="holder">
+                    <div class="list-group">
+                        <div *ngFor="let crew of CrewAndCast" class="crew-card">
+                            <img src="https://www.themoviedb.org/t/p/w92{{crew.profile_path}}" alt=""
+                                style="height: 90px; border-radius: 50%;">
+                            <p class="person-name">{{crew.name}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-alert></app-alert>
+<router-outlet></router-outlet>

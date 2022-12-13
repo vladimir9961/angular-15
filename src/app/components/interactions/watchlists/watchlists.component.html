@@ -1,0 +1,6 @@
+<button class="dropdown-item" (click)="addRemoveWatchlist()">
+    <i class="fa fa-clock-o" aria-hidden="true" [ngStyle]="{'color': itemExists ? 'red' : 'white'}"></i>
+    <span>
+        {{itemExists? "Remove from watchlist": "Add to watchlist"}}
+    </span>
+</button>

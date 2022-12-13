@@ -1,0 +1,37 @@
+#user-interaction {
+
+    #dorpdown-list {
+        display: flex !important;
+        border: none;
+        background: transparent;
+
+
+
+        span {
+            display: none !important;
+        }
+    }
+}
+
+#dorpdown-list {
+    background: rgb(232, 79, 79);
+    padding: 0;
+    border: none;
+
+    i {
+        color: white;
+    }
+
+    span {
+        color: white;
+    }
+
+    .dropdown-item {
+        padding: 10px;
+    }
+
+    .dropdown-item:focus,
+    .dropdown-item:hover {
+        background: transparent;
+    }
+}
