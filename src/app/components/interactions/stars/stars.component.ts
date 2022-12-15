@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CallAlertService } from '../../alert/call.alert.service';
@@ -14,7 +15,7 @@ export class StarsComponent implements OnInit, OnChanges {
   @Input() Name;
   rate: number;
   showStars: boolean = false;
-  constructor(private interaction: InteractionsService, private callalert: CallAlertService, private activatedRoute: ActivatedRoute) { }
+  constructor(private interaction: InteractionsService, private callalert: CallAlertService, private activatedRoute: ActivatedRoute, private location: Location) { }
   ngOnInit(): void {
     let getIdFromUrl = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     let type = (this.activatedRoute.snapshot.paramMap.get('type'));
@@ -25,9 +26,17 @@ export class StarsComponent implements OnInit, OnChanges {
   }
   ngOnChanges(changes: SimpleChanges) {
     let changed = changes['IdOfItem']
-    if (changed?.currentValue != undefined && changed.firstChange === false) {
+    const route = this.location.path()
+    if (route.includes("/watchlist")) {
       this.getIdRated(this.IdOfItem)
     }
+    //If on display page
+    else {
+      if (changed?.currentValue != undefined && changed.firstChange === false) {
+        this.getIdRated(this.IdOfItem)
+      }
+    }
+
   }
   displayStars() {
     this.showStars = !this.showStars

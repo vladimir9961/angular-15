@@ -1,5 +1,8 @@
 <button class="dropdown-item" (click)="addRemoveWatchlist()">
-    <i class="fa fa-clock-o" aria-hidden="true" [ngStyle]="{'color': itemExists ? 'red' : 'white'}"></i>
+    <i class="fa fa-bookmark" aria-hidden="true" *ngIf="!watchlistPage"
+        [ngStyle]="{'color': itemExists ? 'red' : 'white'}"></i>
+
+    <i *ngIf="watchlistPage" class="fa fa-times" aria-hidden="true"></i>
     <span>
         {{itemExists? "Remove from watchlist": "Add to watchlist"}}
     </span>

@@ -1,54 +1,86 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DisplayComponent } from './display/display.component';
-import { IsLoggedGuard } from './is.logged.guard';
 
-import { MovieComponent } from './movie/movie.component';
 import { PopularComponent } from './movie/displayMovies/popular.component';
-// import { TvComponent } from './tv/tv.component';
-//If user loged pass user logged trough routes or not
-const userHere = () => {
-  if (localStorage.getItem('session_id') == null) {
-    return false
-  } else {
-    return true
-  }
-}
+import { HomeComponent } from './home/home.component';
+import { NoPageComponent } from './no-page/no-page.component';
+import { WatchlistComponent } from './watchlist-page/watchlist.component';
+import { IsLoggedGuard } from './is.logged.guard';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    loadChildren: () => import('./home/home.module').then(mod => mod.HomeModule),
-    data: { userExists: userHere() }
+    component: HomeComponent,
+    data: { userExists: IsLoggedGuard }
+  },
+  {
+    path: 'movie',
+    data: { userExists: IsLoggedGuard },
+    children: [
+      {
+        path: 'popular',
+        pathMatch: 'full',
+        component: PopularComponent,
+      },
+      {
+        path: 'now_playing',
+        pathMatch: 'full',
+        component: PopularComponent,
+      },
+      {
+        path: 'upcoming',
+        pathMatch: 'full',
+        component: PopularComponent,
+      },
+      {
+        path: 'top_rated',
+        pathMatch: 'full',
+        component: PopularComponent,
+      }
+    ],
+  },
+  {
+    path: 'tv',
+    data: { userExists: IsLoggedGuard },
+    children: [
+      {
+        path: 'popular',
+        pathMatch: 'full',
+        component: PopularComponent,
+      },
+      {
+        path: 'airing_today',
+        pathMatch: 'full',
+        component: PopularComponent,
+      },
+      {
+        path: 'on_the_air',
+        pathMatch: 'full',
+        component: PopularComponent,
+      },
+      {
+        path: 'top_rated',
+        pathMatch: 'full',
+        component: PopularComponent,
+      }
+    ],
+  },
+  {
+    path: 'watchlist',
+    component: WatchlistComponent,
+    canActivate: [IsLoggedGuard]
   },
   {
     path: 'display/:type/:id',
     pathMatch: 'full',
     component: DisplayComponent,
-    data: { userExists: userHere() }
+    data: { userExists: IsLoggedGuard }
   },
   {
-    path: 'tv',
-    component: MovieComponent,
-    children: [
-      {
-        path: ':value',
-        component: PopularComponent,
-        data: { userExists: userHere() }
-      }
-    ],
-  },
-  {
-    path: 'movie',
-    component: MovieComponent,
-    children: [
-      {
-        path: ':type:value',
-        component: PopularComponent,
-        data: { userExists: userHere() }
-      }
-    ],
+    path: '**',
+    component: NoPageComponent
   }
 ];
 

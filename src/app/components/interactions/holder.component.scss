@@ -3,12 +3,40 @@
     #dorpdown-list {
         display: flex !important;
         border: none;
-        background: transparent;
-
-
+        background: rgb(0 0 0 / 0%);
 
         span {
-            display: none !important;
+            display: none;
+        }
+    }
+}
+
+.watchlist {
+
+    #dorpdown-list {
+        width: 100%;
+        justify-content: space-between;
+        position: relative;
+
+        .dropdown-item {
+            font-size: 2rem;
+            padding: 0;
+        }
+
+        button {
+            gap: 0.5rem;
+            display: flex;
+            align-items: center;
+
+            span {
+                font-size: 14px;
+                display: block !important;
+            }
+        }
+
+        .stars-container {
+            top: 39px;
+            left: -139px;
         }
     }
 }

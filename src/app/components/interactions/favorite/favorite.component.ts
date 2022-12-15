@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { ActivatedRoute } from '@angular/router';
 import { CallAlertService } from '../../alert/call.alert.service';
 import { InteractionsService } from '../interactions.service';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-favorite',
   templateUrl: './favorite.component.html',
@@ -14,7 +14,7 @@ export class FavoriteComponent implements OnInit, OnChanges {
   @Input() itemExists: boolean;
   @Input() IdOfItem: number;
   @Input() TYPE_OF_FETCHED_DATA: string;
-  constructor(private activatedRoute: ActivatedRoute, private interactions: InteractionsService, private callalert: CallAlertService) { }
+  constructor(private activatedRoute: ActivatedRoute, private interactions: InteractionsService, private callalert: CallAlertService, private location: Location) { }
   //On component mount if on /Display page get id from url
   ngOnInit(): void {
     let getIdFromUrl = Number(this.activatedRoute.snapshot.paramMap.get('id'));
@@ -27,8 +27,16 @@ export class FavoriteComponent implements OnInit, OnChanges {
   //If changes accure user clicked dropdwon button and inputs value updated
   ngOnChanges(changes: SimpleChanges) {
     const changed = changes['IdOfItem']
-    if (changed?.currentValue != undefined && changed.firstChange === false) {
+    //If on watchlist page
+    const route = this.location.path()
+    if (route.includes("/watchlist")) {
       this.getIdFavorite(this.IdOfItem)
+    }
+    //If on display page
+    else {
+      if (changed?.currentValue != undefined && changed.firstChange === false) {
+        this.getIdFavorite(this.IdOfItem)
+      }
     }
   }
   //On click add or remove item from favorite list
@@ -60,6 +68,7 @@ export class FavoriteComponent implements OnInit, OnChanges {
         }
       },
 
-      (err => { console.log(err) }))
+      (err => { console.log(err) })
+    )
   }
 }

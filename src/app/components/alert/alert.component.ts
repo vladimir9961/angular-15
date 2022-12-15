@@ -1,19 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CallAlertService } from './call.alert.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-alert',
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.scss']
 })
-export class AlertComponent implements OnInit {
-
+export class AlertComponent implements OnInit, OnDestroy {
+  private alertSubscription: Subscription
   constructor(private callalertservice: CallAlertService) { }
   display: boolean;
   message: string;
   alertClass: string;
   test: any = [];
   ngOnInit(): void {
-    this.callalertservice.displayAlert.subscribe((displayAlert) => {
+    this.alertSubscription = this.callalertservice.displayAlert.subscribe((displayAlert) => {
       this.message = this.callalertservice.textMessage;
       this.alertClass = this.callalertservice.alertType
       this.display = displayAlert;
@@ -24,5 +25,7 @@ export class AlertComponent implements OnInit {
       }
     })
   }
-
+  ngOnDestroy(): void {
+    this.alertSubscription.unsubscribe()
+  }
 }

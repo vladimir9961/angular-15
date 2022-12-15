@@ -16,10 +16,12 @@ export class HolderComponent implements OnInit {
 
   }
   ngOnInit() {
+
     const route = this.location.path()
-    if (route.includes("/display")) {
+    if (route.includes("/display") || route.includes("/watchlist")) {
       this.show = 'show'
     }
+
   }
 
 }

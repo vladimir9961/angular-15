@@ -1,0 +1,22 @@
+.card {
+    background: linear-gradient(145deg, rgb(240 240 240), rgb(202 202 202));
+    border: none;
+    border-radius: 8px;
+    box-shadow: 7px 7px 14px #fffbfb, -7px -7px 14px #f2f2f2;
+
+    .card-body {
+        position: relative;
+        height: 100%;
+
+        #wrapper {
+            padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+            position: absolute;
+            height: 100%;
+            top: 0;
+            left: 0;
+            display: grid;
+            align-items: end;
+            width: 100%;
+        }
+    }
+}

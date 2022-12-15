@@ -1,9 +1,123 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$angular-movie-primary: mat.define-palette(mat.$indigo-palette);
+$angular-movie-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$angular-movie-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$angular-movie-theme: mat.define-light-theme((color: (primary: $angular-movie-primary,
+        accent: $angular-movie-accent,
+        warn: $angular-movie-warn,
+      )));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($angular-movie-theme);
+@import '../node_modules/ngx-bar-rating/themes/br-default-theme.scss';
+
 html,
 body {
-    height: 100%;
+  height: fit-content;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+/* The switch - the box around the slider */
+.switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 5.2em;
+  height: 2em;
+  overflow: hidden;
+  margin-left: 1rem;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 25px;
+  background-color: #eee;
+  transition: .4s;
+  border-radius: 30px;
+  background: rgb(147 147 147);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1em;
+  width: 1em;
+  border-radius: 20px;
+  left: 0.4em;
+  bottom: 4px;
+  background-color: rgb(255 255 255);
+  transition: 0.4s;
+}
+
+input:checked+.slider {
+  background-color: rgb(233 22 65);
+}
+
+input:checked+.slider:before {
+  transform: translateX(3em);
+}
+
+.switch .text {
+  position: absolute;
+  top: 40%;
+  font-size: 14px;
+  pointer-events: none;
+  text-transform: uppercase;
+  transform: translateY(-50%);
+  transition: .4s;
+}
+
+.switch .text.on {
+  left: .8rem;
+  transform: translateX(-4rem) translateY(-50%);
+}
+
+.switch .text.off {
+  color: rgb(77 77 77);
+  right: .8rem;
+  font-weight: 600;
+}
+
+input:checked~.text.off {
+  transform: translateX(3rem) translateY(-50%);
+}
+
+input:checked~.text.on {
+  color: rgb(255 255 255);
+  transform: translateX(-0.4rem) translateY(-50%);
 }

@@ -1,0 +1,46 @@
+<div class="container" id="user-interaction" style="padding-top: 5rem;">
+    <label class="switch">
+        <input type="checkbox" (click)="toogleMovieTv($event)">
+        <span class="slider"></span>
+        <span class="text on">Movie</span>
+        <span class="text off">Tv</span>
+    </label>
+    <div *ngFor="let item of watchData">
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img style="cursor: pointer;"
+                        src="https://www.themoviedb.org/t/p/w220_and_h330_face{{item?.poster_path}}"
+                        class="img-fluid rounded-start" (click)='display({id: item.id, type: "movie"})' alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body watchlist">
+                        <div style="display: flex;">
+                            <span id="card-rating">
+                                <i class="fa fa-star" style="color: rgb(163 137 2);z-index: 4;">
+                                    <span>
+                                        {{item.vote_average}}
+                                    </span>
+                                </i>
+                            </span>
+                            <h5 class="card-title">{{item.title ? item.title : item.original_name}}</h5>
+                        </div>
+                        <p class="card-text"><small class="text-muted">{{item.release_date ? (item.release_date | date:
+                                'MMM d, y') :
+                                (item.first_air_date |
+                                date: 'MMM d, y')}}</small>
+                        </p>
+                        <p class="card-text">{{item.overview}}</p>
+                        <div id="wrapper">
+                            <div class="holder-wrapper">
+                                <app-holder [IdOfItem]="item.id" [Name]="item.title"
+                                    [TYPE_OF_FETCHED_DATA]="'movie'"></app-holder>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-alert></app-alert>

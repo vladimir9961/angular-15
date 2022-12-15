@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.getPopular('movie');
     this.getTopRated('movie');
+
   }
   //Toggle cards within container Movie/Tv
   toogleMovieTv(event) {

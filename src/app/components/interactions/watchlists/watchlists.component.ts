@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { ActivatedRoute } from '@angular/router';
 import { CallAlertService } from '../../alert/call.alert.service';
 import { InteractionsService } from '../interactions.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-watchlists',
@@ -11,9 +12,10 @@ import { InteractionsService } from '../interactions.service';
 export class WatchlistsComponent implements OnInit, OnChanges {
   @Input() IdOfItem: number;
   @Input() TYPE_OF_FETCHED_DATA: string;
-  itemExists: boolean;
   @Input() Name: string;
-  constructor(private interactions: InteractionsService, private callalert: CallAlertService, private activatedRoute: ActivatedRoute) { }
+  itemExists: boolean;
+  watchlistPage: boolean;
+  constructor(private interactions: InteractionsService, private callalert: CallAlertService, private activatedRoute: ActivatedRoute, private location: Location) { }
 
   ngOnInit(): void {
     let getIdFromUrl = Number(this.activatedRoute.snapshot.paramMap.get('id'));
@@ -24,9 +26,18 @@ export class WatchlistsComponent implements OnInit, OnChanges {
     }
   }
   ngOnChanges(changes: SimpleChanges): void {
-    const changed = changes['IdOfItem']
-    if (changed?.currentValue != undefined && changed.firstChange === false) {
+    const changed = changes['IdOfItem'];
+    //If on watchlist page
+    const route = this.location.path()
+    if (route.includes("/watchlist")) {
+      this.watchlistPage = true;
       this.getIdWatchlist(this.IdOfItem)
+    }
+    //If on display page
+    else {
+      if (changed?.currentValue != undefined && changed.firstChange === false) {
+        this.getIdWatchlist(this.IdOfItem)
+      }
     }
   }
   addRemoveWatchlist() {

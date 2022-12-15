@@ -14,6 +14,7 @@ export class InteractionsService {
   };
   //Checking if Movie/Tv exist in favorite list
   checkInFavorite(TYPE_OF_FETCHED_DATA) {
+    if (TYPE_OF_FETCHED_DATA === "movie") TYPE_OF_FETCHED_DATA = "movies"
     return this.http.get(`${this.api_host}account/${this.accId}/favorite/${TYPE_OF_FETCHED_DATA}?api_key=${this.api_key}&session_id=${this.sessId}&language=en-US&sort_by=created_at.asc&page=1`)
   };
   //Gets called on click add's or removes movie/tv from favorite list
@@ -30,6 +31,7 @@ export class InteractionsService {
   };
   //Checking if Movie/Tv exist in watchlist list
   checkInWatchlist(TYPE_OF_FETCHED_DATA) {
+    if (TYPE_OF_FETCHED_DATA === "movie") TYPE_OF_FETCHED_DATA = "movies"
     return this.http.get(`${this.api_host}account/${this.accId}/watchlist/${TYPE_OF_FETCHED_DATA}?api_key=${this.api_key}&session_id=${this.sessId}&language=en-US&sort_by=created_at.asc&page=1`)
   };
   //Gets called on click add's or removes movie/tv from favorite list
@@ -56,6 +58,7 @@ export class InteractionsService {
   }
   //Get rated movies
   getAllRatedMovies(type) {
+    if (type === "movie") type = "movies"
     return this.http.get(`${this.api_host}account/${this.accId}/rated/${type}?api_key=${this.api_key}&language=en-US&session_id=${this.sessId}&sort_by=created_at.asc&page=1`)
   }
   //User rated movie/tv
