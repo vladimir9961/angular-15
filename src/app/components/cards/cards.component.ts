@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 export class CardsComponent implements OnInit {
   @Input() FETCHED_DATA: any;
   @Input() TYPE_OF_FETCHED_DATA: string;
-  private test: Subscription;
+  private subscribeUser: Subscription;
   userExist: boolean;
   checkedId: number;
 
@@ -23,15 +23,15 @@ export class CardsComponent implements OnInit {
 
   ngOnInit(): void {
     //Check if user exists
-    this.test = this.route
+    this.subscribeUser = this.route
       .data
-      .subscribe((v: any) => this.userExist = v.userExists);
+      .subscribe((v: any) => { this.userExist = v.userExists });
   }
   ngOnDestroy(): void {
-    this.test.unsubscribe()
+    this.subscribeUser.unsubscribe()
   }
   //Redirect to display page on click to display movie/tv
   display(props: any) {
-    this.router.navigate(['display/', `${props.type}`, `${props.id}`]), { relativeTo: this.route }
+    this.router.navigate(['display/', `${props.type}`, `${props.id}`])
   }
 }

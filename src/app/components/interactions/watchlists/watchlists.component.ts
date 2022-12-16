@@ -1,20 +1,24 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CallAlertService } from '../../alert/call.alert.service';
 import { InteractionsService } from '../interactions.service';
 import { Location } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-watchlists',
   templateUrl: './watchlists.component.html',
   styleUrls: ['./watchlists.component.scss']
 })
-export class WatchlistsComponent implements OnInit, OnChanges {
+export class WatchlistsComponent implements OnInit, OnChanges, OnDestroy {
   @Input() IdOfItem: number;
   @Input() TYPE_OF_FETCHED_DATA: string;
   @Input() Name: string;
   itemExists: boolean;
   watchlistPage: boolean;
+  private subscriptionAddRemoveWatchlist: Subscription;
+  private subscriptionGetWatchlist: Subscription;
+
   constructor(private interactions: InteractionsService, private callalert: CallAlertService, private activatedRoute: ActivatedRoute, private location: Location) { }
 
   ngOnInit(): void {
@@ -41,7 +45,7 @@ export class WatchlistsComponent implements OnInit, OnChanges {
     }
   }
   addRemoveWatchlist() {
-    this.interactions.add_or_remove_watchlist(this.TYPE_OF_FETCHED_DATA, this.IdOfItem, this.itemExists)
+    this.subscriptionAddRemoveWatchlist = this.interactions.add_or_remove_watchlist(this.TYPE_OF_FETCHED_DATA, this.IdOfItem, this.itemExists)
       .subscribe((res: any) => {
         if (res.success == true) {
           this.itemExists = !this.itemExists;
@@ -57,7 +61,7 @@ export class WatchlistsComponent implements OnInit, OnChanges {
       })
   }
   getIdWatchlist(id: number) {
-    this.interactions.checkInWatchlist(this.TYPE_OF_FETCHED_DATA)
+    this.subscriptionGetWatchlist = this.interactions.checkInWatchlist(this.TYPE_OF_FETCHED_DATA)
       .subscribe(
         (res: any) => {
           const movieTvExists = res.results.filter(favoriteObject => favoriteObject.id === id);
@@ -69,5 +73,9 @@ export class WatchlistsComponent implements OnInit, OnChanges {
         },
         (err: any) => { console.log(err.error) }
       )
+  }
+  ngOnDestroy(): void {
+    this.subscriptionAddRemoveWatchlist.unsubscribe();
+    this.subscriptionGetWatchlist.unsubscribe();
   }
 }

@@ -1,0 +1,77 @@
+<div style="padding-top: 5rem;" class="container">
+    <div class="row">
+        <div class="col-3">
+            <aside>
+                <mat-selection-list #selected (selectionChange)="display(selected.selectedOptions.selected)"
+                    [multiple]="false">
+                    <mat-list-option [value]="'movie'">
+                        <span>Movies </span> <span id="badge" class="badge bg-secondary">{{movie_lenght}}</span>
+                    </mat-list-option>
+                    <mat-list-option [value]="'person'">
+                        <span>People </span> <span id="badge" class="badge bg-secondary">{{gender_lenght}}</span>
+                    </mat-list-option>
+                    <mat-list-option [value]="'tv'">
+                        <div style="display: flex;">
+                            <span>Tv's </span>
+                            <span id="badge" class="badge bg-secondary"
+                                *ngIf="tv_lenght != undefined">{{tv_lenght}}</span>
+                        </div>
+                    </mat-list-option>
+                </mat-selection-list>
+            </aside>
+        </div>
+        <div class="col-9">
+            <div>
+                <div *ngIf="show === 'movie'" style="display: flex;
+                gap: 1rem;
+                justify-content: end;
+                flex-wrap: wrap;">
+                    <div *ngFor="let items of mediaMovie[0]" class="card bg-dark text-white"
+                        style="height: 330px; width: 220px; border: none;">
+                        <img (click)="onDisplay('movie', items.id)"
+                            src="https://www.themoviedb.org/t/p/w220_and_h330_face{{items.poster_path}}" alt=""
+                            class="card-img" style="z-index: 1; cursor: pointer;">
+                        <div class="card-img-overlay">
+                            <div class="info">
+                                <h5 class="card-title" style="    z-index: 2;
+                                padding: 0;
+                                position: absolute;
+                                bottom: 0;
+                                width: 100%;">{{items.original_title}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="tv_lenght != 0">
+                    <div *ngIf="show === 'tv'" style="display: flex;
+                    gap: 1rem;
+                    justify-content: end;
+                    flex-wrap: wrap;">
+                        <div *ngFor="let movies of mediaTv[0]" class="card bg-dark text-white"
+                            style="height: 330px; width: 220px; border: none;">
+                            <img src="https://www.themoviedb.org/t/p/w220_and_h330_face{{movies.poster_path}}" alt=""
+                                class="card-img">
+                            <div class="card-img-overlay">
+                                <h5 class="card-title">{{movies.original_title}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="show === 'person'" style="display: flex;
+                gap: 1rem;
+                justify-content: end;
+                flex-wrap: wrap;">
+                    <div *ngFor="let items of gender[0]" class="card bg-dark text-white"
+                        style="height: 330px; width: 220px; border: none;">
+                        <img src="https://www.themoviedb.org/t/p/w220_and_h330_face{{items.profile_path}}" alt=""
+                            class="card-img">
+                        <div class="card-img-overlay">
+                            <h5 class="card-title">{{items.name}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

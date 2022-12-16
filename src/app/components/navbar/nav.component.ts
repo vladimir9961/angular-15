@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -9,10 +11,21 @@ import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 export class NavComponent implements OnInit {
   //If session exist user is loged data recived from parent (app-component) display user profile button with logout
   @Input() isLogged;
-
-  constructor() { }
+  searchForm = new FormGroup({
+    searchInput: new FormControl(''),
+  })
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
-
+  get searchInput() {
+    return this.searchForm.get('searchInput')?.value;
+  }
+  submitForm() {
+    this.router.navigate(['search/', `${this.searchForm.get('searchInput')?.value}`])
+    window.location.reload();
+  }
+  display() {
+    this.router.navigate([`login`])
+  }
 }

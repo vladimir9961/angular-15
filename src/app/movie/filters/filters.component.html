@@ -24,9 +24,15 @@
                                 Genres
                             </mat-panel-title>
                         </mat-expansion-panel-header>
-                        <ul>
-                            <li *ngFor="let genre of genres">
-                                <span (click)="getGenreId(genre.id)">{{genre.name}}</span>
+                        <ul style="display: flex;
+                        flex-wrap: wrap;
+                        gap: 0.2rem;
+                        padding: 0;
+                        box-shadow: 0 -0.2px 0 0 black;
+                        padding-top: 0.5rem;">
+                            <li style="width: fit-content;" *ngFor="let genre of genres">
+                                <mat-chip-option color="accent"
+                                    (click)="getGenreId(genre.id)">{{genre.name}}</mat-chip-option>
                             </li>
                         </ul>
                     </mat-expansion-panel>

@@ -12,6 +12,10 @@ export class PagesService {
     this.accId = parseInt(localStorage.getItem('account_id'));
     this.sessId = JSON.parse(localStorage.getItem('session_id'));
   }
+  //Get User Acc Details
+  getUser() {
+    return this.http.get(`https://api.themoviedb.org/3/account?api_key=3b5caee89d6f1ccfb03cb837adb8e9e1&session_id=${this.sessId}`)
+  }
   //Home Page
   getDataHomePage(tvOrMovies, type) {
     return this.http.get(`${this.apiHost}${tvOrMovies}/${type}?api_key=${this.apiKey}&language=en-US`)
@@ -19,6 +23,9 @@ export class PagesService {
   //Display page
   getDataDisplayPage(id, type) {
     return this.http.get(`${this.apiHost}${type}/${id}?api_key=${this.apiKey}&language=en-US`)
+  }
+  getVideos(id, type) {
+    return this.http.get(`${this.apiHost}${type}/${id}/videos?api_key=${this.apiKey}&language=en-US`)
   }
   getSimilar(id, type) {
     return this.http.get(`${this.apiHost}${type}/${id}/similar?api_key=${this.apiKey}&language=en-US&page=1`)
@@ -41,5 +48,9 @@ export class PagesService {
   //Watchlist
   getWatchlist(type) {
     return this.http.get(`${this.apiHost}account/${this.accId}/watchlist/${type}?api_key=${this.apiKey}&language=en-US&session_id=${this.sessId}&sort_by=created_at.asc&page=1`)
+  }
+  //Search
+  search(query) {
+    return this.http.get(`${this.apiHost}search/multi?api_key=${this.apiKey}&language=en-US&query=${query}&page=1&include_adult=false`)
   }
 }

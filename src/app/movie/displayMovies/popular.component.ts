@@ -20,7 +20,6 @@ export class PopularComponent implements OnInit, OnDestroy, OnChanges {
   @Input() FilteredData: any;
   ngOnChanges(changed: SimpleChanges) {
     const changes = changed['FilteredData']
-    console.log(changes);
     if (changes.currentValue != undefined) {
       if (changes.previousValue === undefined) {
         this.FetchedData = []
@@ -57,7 +56,6 @@ export class PopularComponent implements OnInit, OnDestroy, OnChanges {
   getFilterResults(eventData) {
     this.FetchedData = [];
     this.FetchedData.push(...eventData);
-    console.log(eventData)
   }
   //Fetch data
   async getPath(page: number) {
@@ -71,7 +69,6 @@ export class PopularComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnDestroy(): void {
-
     this.getMoviesSubscripton.unsubscribe();
   }
 

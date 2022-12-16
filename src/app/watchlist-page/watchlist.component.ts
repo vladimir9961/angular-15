@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { PagesService } from '../pages.service';
 
 @Component({
@@ -7,12 +8,13 @@ import { PagesService } from '../pages.service';
   templateUrl: './watchlist.component.html',
   styleUrls: ['./watchlist.component.scss']
 })
-export class WatchlistComponent implements OnInit {
+export class WatchlistComponent implements OnInit, OnDestroy {
   public watchData: any;
-  IdOfItem
-  constructor(private pages: PagesService, private router: Router, private route: ActivatedRoute) { }
+  IdOfItem: number;
+  private subscribeWatchlist: Subscription;
+  constructor(private pages: PagesService, private router: Router) { }
   ngOnInit(): void {
-    this.pages.getWatchlist('movies')
+    this.subscribeWatchlist = this.pages.getWatchlist('movies')
       .subscribe((res: any) => {
         this.watchData = res.results
         this.IdOfItem = res.results.id
@@ -22,12 +24,15 @@ export class WatchlistComponent implements OnInit {
     this.getWatchlistMovieTv(e.target.checked ? 'tv' : 'movies');
   }
   getWatchlistMovieTv(props) {
-    this.pages.getWatchlist(props).subscribe((res: any) => {
+    this.subscribeWatchlist = this.pages.getWatchlist(props).subscribe((res: any) => {
       this.watchData = res.results
       this.IdOfItem = res.results.id
     })
   }
   display(props: any) {
-    this.router.navigate(['display/', `${props.type}`, `${props.id}`]), { relativeTo: this.route }
+    this.router.navigate(['display/', `${props.type}`, `${props.id}`])
+  }
+  ngOnDestroy(): void {
+    this.subscribeWatchlist.unsubscribe();
   }
 }

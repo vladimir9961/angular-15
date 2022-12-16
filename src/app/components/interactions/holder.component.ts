@@ -13,15 +13,11 @@ export class HolderComponent implements OnInit {
   show: string;
 
   constructor(private readonly location: Location) {
-
   }
   ngOnInit() {
-
     const route = this.location.path()
     if (route.includes("/display") || route.includes("/watchlist")) {
       this.show = 'show'
     }
-
   }
-
 }

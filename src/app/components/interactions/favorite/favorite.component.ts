@@ -1,19 +1,23 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CallAlertService } from '../../alert/call.alert.service';
 import { InteractionsService } from '../interactions.service';
 import { Location } from '@angular/common';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-favorite',
   templateUrl: './favorite.component.html',
   styleUrls: ['./favorite.component.scss'],
 })
 
-export class FavoriteComponent implements OnInit, OnChanges {
+export class FavoriteComponent implements OnInit, OnChanges, OnDestroy {
   @Input() Name: string;
   @Input() itemExists: boolean;
   @Input() IdOfItem: number;
   @Input() TYPE_OF_FETCHED_DATA: string;
+  private subscribeFavorite: Subscription;
+  private subscribeFavoriteGet: Subscription;
+
   constructor(private activatedRoute: ActivatedRoute, private interactions: InteractionsService, private callalert: CallAlertService, private location: Location) { }
   //On component mount if on /Display page get id from url
   ngOnInit(): void {
@@ -41,7 +45,7 @@ export class FavoriteComponent implements OnInit, OnChanges {
   }
   //On click add or remove item from favorite list
   addRemoveFav() {
-    this.interactions.add_or_remove_favorite(this.TYPE_OF_FETCHED_DATA, this.IdOfItem, this.itemExists)
+    this.subscribeFavorite = this.interactions.add_or_remove_favorite(this.TYPE_OF_FETCHED_DATA, this.IdOfItem, this.itemExists)
       .subscribe((res: any) => {
         if (res.success == true) {
           this.itemExists = !this.itemExists
@@ -58,7 +62,7 @@ export class FavoriteComponent implements OnInit, OnChanges {
   }
   //Filter object to see if item exist or not and update the movieTvExists variable true/false
   getIdFavorite(id: number) {
-    this.interactions.checkInFavorite(this.TYPE_OF_FETCHED_DATA).subscribe(
+    this.subscribeFavoriteGet = this.interactions.checkInFavorite(this.TYPE_OF_FETCHED_DATA).subscribe(
       (res: any) => {
         const movieTvExists = res.results.filter(favoriteObject => favoriteObject.id === id);
         if (movieTvExists[0] != undefined) {
@@ -70,5 +74,9 @@ export class FavoriteComponent implements OnInit, OnChanges {
 
       (err => { console.log(err) })
     )
+  }
+  ngOnDestroy(): void {
+    this.subscribeFavorite.unsubscribe();
+    this.subscribeFavoriteGet.unsubscribe();
   }
 }

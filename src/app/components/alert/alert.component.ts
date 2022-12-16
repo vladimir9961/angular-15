@@ -9,21 +9,19 @@ import { Subscription } from 'rxjs';
 export class AlertComponent implements OnInit, OnDestroy {
   private alertSubscription: Subscription
   constructor(private callalertservice: CallAlertService) { }
-  display: boolean;
-  message: string;
-  alertClass: string;
-  test: any = [];
+  alert = []
   ngOnInit(): void {
     this.alertSubscription = this.callalertservice.displayAlert.subscribe((displayAlert) => {
-      this.message = this.callalertservice.textMessage;
-      this.alertClass = this.callalertservice.alertType
-      this.display = displayAlert;
-      if (displayAlert) {
-        setTimeout(() => {
-          this.callalertservice.displayAlert.next(false)
-        }, 4000);
-      }
+      this.alert.push({ message: this.callalertservice.textMessage, alertClass: this.callalertservice.alertType, display: displayAlert })
+      //After 5 secconds remove first created object from array 
+      setTimeout(() => {
+        this.alert = this.alert.filter((_, index) => index !== 0);
+      }, 5000);
     })
+  }
+  //On click remove allert by index
+  removeAlert(i: number) {
+    this.alert = this.alert.filter((_, index) => index !== i);
   }
   ngOnDestroy(): void {
     this.alertSubscription.unsubscribe()

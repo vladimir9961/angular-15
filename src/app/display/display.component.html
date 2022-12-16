@@ -33,15 +33,43 @@
                     <h3>Overview</h3>
                     {{movieData?.overview}}
                 </div>
+                <div>
+                    <div class="trailer-btn">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal" style="    background: none;
+                            border: 1px solid;
+                            margin-right: 2rem;
+                            position: relative;">
+                            Watch trailer
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content" style="width: fit-content;">
+                                    <iframe width="420" height="315" [src]="sanitizedBlobUrl">
+                                    </iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col sect-two">
                 <h2>Similar</h2>
                 <div class="holder">
                     <div class="list-group list-group-horizontal list-group">
                         <div class="card" *ngFor="let item of SimilarObject">
-                            <img src="https://www.themoviedb.org/t/p/w780{{item?.backdrop_path}}" style="width: 300px;">
+                            <img *ngIf="item.backdrop_path != undefined"
+                                src="https://www.themoviedb.org/t/p/w780{{item?.backdrop_path}}"
+                                (click)="display(TYPE_OF_FETCHED_DATA, item.id)" style="width: 300px; z-index: 2;">
                             <div class="card-img-overlay">
-                                <div class="text-white card-title">{{item.title}}</div>
+                                <div class="text-white card-title" style="position: absolute;
+                                bottom: 0;
+                                z-index: 3;
+                            ">{{item.title}}</div>
                             </div>
                         </div>
                     </div>
@@ -50,7 +78,8 @@
                 <div class="holder">
                     <div class="list-group">
                         <div *ngFor="let crew of CrewAndCast" class="crew-card">
-                            <img src="https://www.themoviedb.org/t/p/w92{{crew.profile_path}}" alt=""
+                            <img *ngIf="crew.profile_path != undefined"
+                                src="https://www.themoviedb.org/t/p/w92{{crew.profile_path}}" alt=""
                                 style="height: 90px; border-radius: 50%;">
                             <p class="person-name">{{crew.name}}</p>
                         </div>

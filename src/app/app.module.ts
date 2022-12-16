@@ -28,6 +28,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { WatchlistComponent } from './watchlist-page/watchlist.component';
+import { SearchComponent } from './search/search.component';
+import { MatListModule } from '@angular/material/list';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   imports: [
     BrowserModule,
@@ -43,7 +49,12 @@ import { WatchlistComponent } from './watchlist-page/watchlist.component';
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatListModule,
+    MatBadgeModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatDialogModule
   ],
   declarations: [
     AppComponent,
@@ -58,6 +69,7 @@ import { WatchlistComponent } from './watchlist-page/watchlist.component';
     FiltersComponent,
     NoPageComponent,
     WatchlistComponent,
+    SearchComponent,
   ],
   providers: [LoginService, IsLoggedGuard],
   bootstrap: [AppComponent]

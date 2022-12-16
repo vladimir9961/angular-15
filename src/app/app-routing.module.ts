@@ -7,17 +7,27 @@ import { HomeComponent } from './home/home.component';
 import { NoPageComponent } from './no-page/no-page.component';
 import { WatchlistComponent } from './watchlist-page/watchlist.component';
 import { IsLoggedGuard } from './is.logged.guard';
-
+import { SearchComponent } from './search/search.component';
+import { LoginComponent } from './components/navbar/login/login.component';
+import { NLoggedGuard } from './n-logged.guard';
+const userHere = () => {
+  if (localStorage.getItem('session_id') == null) {
+    return false
+  } else {
+    return true
+  }
+}
 const routes: Routes = [
+
   {
     path: '',
     pathMatch: 'full',
     component: HomeComponent,
-    data: { userExists: IsLoggedGuard }
+    data: { userExists: userHere() },
   },
   {
     path: 'movie',
-    data: { userExists: IsLoggedGuard },
+    data: { userExists: userHere() },
     children: [
       {
         path: 'popular',
@@ -43,7 +53,7 @@ const routes: Routes = [
   },
   {
     path: 'tv',
-    data: { userExists: IsLoggedGuard },
+    data: { userExists: userHere() },
     children: [
       {
         path: 'popular',
@@ -73,10 +83,19 @@ const routes: Routes = [
     canActivate: [IsLoggedGuard]
   },
   {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [NLoggedGuard]
+  },
+  {
+    path: 'search/:query',
+    component: SearchComponent,
+  },
+  {
     path: 'display/:type/:id',
     pathMatch: 'full',
     component: DisplayComponent,
-    data: { userExists: IsLoggedGuard }
+    data: { userExists: userHere() }
   },
   {
     path: '**',
