@@ -34,6 +34,14 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ListsPageComponent } from './lists-page/lists-page.component';
+import { MatIconModule } from '@angular/material/icon';
+import { ListComponent } from './lists-page/list/list.component';
+import { NewListComponent } from './lists-page/new-list/new-list.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { AddMovieToListComponent } from './lists-page/new-list/add-movie-to-list/add-movie-to-list.component';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -54,7 +62,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatBadgeModule,
     MatCheckboxModule,
     MatChipsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatStepperModule,
+    MatAutocompleteModule,
+    MatIconModule
   ],
   declarations: [
     AppComponent,
@@ -70,6 +81,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     NoPageComponent,
     WatchlistComponent,
     SearchComponent,
+    ListsPageComponent,
+    ListComponent,
+    NewListComponent,
+    AddMovieToListComponent,
   ],
   providers: [LoginService, IsLoggedGuard],
   bootstrap: [AppComponent]

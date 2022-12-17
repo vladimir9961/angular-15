@@ -1,0 +1,54 @@
+<section class="user-info" style="margin-top:5rem;">
+    <div class="container">
+        <div class="row">
+            <div class="d-flex">
+                <h5>List Name:{{listDetails?.name}}</h5>
+            </div>
+        </div>
+        <div class="row">
+            <h5>List created by: {{listDetails?.created_by}}</h5>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h5>List description: {{listDetails?.description}}</h5>
+            </div>
+            <div class="col" style="display: flex; gap: 0.5rem;">
+                <button class="btn" (click)="new_list()">Create New List</button>
+                <button (click)="addToListButton()" class="btn">Add movie to list</button>
+                <button (click)="delete_list()" class="btn">Delete list</button>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="content-info">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h5 class="fst-italic">{{listDetails?.items.length}}</h5>
+                <h5>ITEMS ON THIS LIST</h5>
+            </div>
+            <div class="col">
+                <h5 class="fst-italic">
+                    {{averageListRate | number : '1.1'}}%
+                </h5>
+                <h5>AVERAGE RATING</h5>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="movies">
+    <div class="container" style="display: flex;
+    flex-wrap: wrap;">
+        <div class="card" style="height: 330px; width: 220px;" *ngFor="let item of items">
+            <img (click)="display(item.media_type, item.id)" class="card-img"
+                src="https://www.themoviedb.org/t/p/w220_and_h330_face{{item.poster_path}}" alt=""
+                style="z-index: 2; cursor: pointer;">
+            <div class="card-img-overlay">
+                <h5 class="title">
+                    {{item.title ? item.title : item.original_name}}
+                </h5>
+            </div>
+        </div>
+    </div>
+
+</section>

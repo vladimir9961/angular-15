@@ -128,7 +128,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
     })
   }
   ngOnDestroy(): void {
-    // this.genreSubscription.unsubscribe();
-    // this.dataSubscription.unsubscribe();
+    this.genreSubscription?.unsubscribe();
+    this.dataSubscription?.unsubscribe();
   }
 }

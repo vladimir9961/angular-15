@@ -1,0 +1,10 @@
+<div class="container">
+    <button (click)="navigateToCreateList()" mat-raised-button color="primary">Create new list</button>
+    <div class="card" *ngFor="let list of lists">
+        <div class="card-body" (click)="navigateToList(list.id)">
+            <h4>{{list.name}}</h4>
+            <p>{{list.item_count}} Items</p>
+            <p>{{list.description}}</p>
+        </div>
+    </div>
+</div>

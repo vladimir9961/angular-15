@@ -75,7 +75,7 @@ export class WatchlistsComponent implements OnInit, OnChanges, OnDestroy {
       )
   }
   ngOnDestroy(): void {
-    this.subscriptionAddRemoveWatchlist.unsubscribe();
-    this.subscriptionGetWatchlist.unsubscribe();
+    this.subscriptionAddRemoveWatchlist?.unsubscribe();
+    this.subscriptionGetWatchlist?.unsubscribe();
   }
 }

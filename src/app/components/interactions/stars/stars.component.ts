@@ -80,8 +80,8 @@ export class StarsComponent implements OnInit, OnChanges, OnDestroy {
       (err: any) => { console.log(err) })
   }
   ngOnDestroy(): void {
-    this.subscribeDeleteRate.unsubscribe();
-    this.subscribeChangeRate.unsubscribe();
-    this.subscribeGetRate.unsubscribe();
+    this.subscribeDeleteRate?.unsubscribe();
+    this.subscribeChangeRate?.unsubscribe();
+    this.subscribeGetRate?.unsubscribe();
   }
 }

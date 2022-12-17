@@ -18,3 +18,8 @@ export interface Ifilters {
     user_vote?: number,
     runtime?: number
 }
+export interface Movie {
+    name: string;
+    img: any;
+    id: string;
+}

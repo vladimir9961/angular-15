@@ -10,6 +10,10 @@ import { IsLoggedGuard } from './is.logged.guard';
 import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './components/navbar/login/login.component';
 import { NLoggedGuard } from './n-logged.guard';
+import { ListsPageComponent } from './lists-page/lists-page.component';
+import { ListComponent } from './lists-page/list/list.component';
+import { NewListComponent } from './lists-page/new-list/new-list.component';
+import { AddMovieToListComponent } from './lists-page/new-list/add-movie-to-list/add-movie-to-list.component';
 const userHere = () => {
   if (localStorage.getItem('session_id') == null) {
     return false
@@ -81,6 +85,27 @@ const routes: Routes = [
     path: 'watchlist',
     component: WatchlistComponent,
     canActivate: [IsLoggedGuard]
+  },
+  {
+    path: 'lists',
+    component: ListsPageComponent,
+    canActivate: [IsLoggedGuard],
+  },
+  {
+    path: 'new_list',
+    component: NewListComponent,
+    canActivate: [IsLoggedGuard],
+    children: [
+      {
+        path: 'add_movie_to_list/:id',
+        component: AddMovieToListComponent
+      }
+    ]
+  },
+  {
+    path: 'list/:id',
+    component: ListComponent,
+    canActivate: [IsLoggedGuard],
   },
   {
     path: 'login',

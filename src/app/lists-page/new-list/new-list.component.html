@@ -1,0 +1,46 @@
+<aside style="position: absolute;">
+    <div *ngIf="hideCreateList">
+        <div class="example-input-wrapper" style="display:none">
+            <input id="duration" value="500" type="number" min="0" step="100" #duration>
+        </div>
+        <div style="margin-top: 5rem; ">
+            <div class="col-3" style="width: fit-content;">
+                <mat-vertical-stepper *ngIf="hideShowCreateListForm" linear #stepper
+                    [animationDuration]="duration.value">
+                    <mat-step [stepControl]="formListName" [editable]="isEditable">
+                        <form [formGroup]="formListName">
+                            <ng-template matStepLabel>List details</ng-template>
+                            <mat-form-field>
+                                <input matInput placeholder="Add name to list" formControlName="name" required>
+                            </mat-form-field>
+                            <div>
+                                <button mat-button matStepperNext>Next</button>
+                            </div>
+                        </form>
+                    </mat-step>
+                    <mat-step [stepControl]="formDescription" [editable]="isEditable">
+                        <form [formGroup]="formDescription">
+                            <ng-template matStepLabel>Description</ng-template>
+                            <mat-form-field>
+                                <input matInput placeholder="Add description to list" formControlName="description">
+                            </mat-form-field>
+                            <div>
+                                <button mat-button matStepperNext>Next</button>
+                            </div>
+                        </form>
+                    </mat-step>
+                    <mat-step>
+                        <ng-template matStepLabel>Done</ng-template>
+                        You are now done.
+                        <div>
+                            <button mat-button (click)="saveList()">Save List</button>
+                            <button mat-button (click)="stepper.reset()">Reset</button>
+                        </div>
+                    </mat-step>
+                </mat-vertical-stepper>
+            </div>
+        </div>
+    </div>
+</aside>
+<app-add-movie-to-list *ngIf="!hideCreateList"></app-add-movie-to-list>
+<app-alert></app-alert>

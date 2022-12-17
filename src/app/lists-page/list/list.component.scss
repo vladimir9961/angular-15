@@ -1,0 +1,40 @@
+.user-info {
+    padding: 20px 0;
+    background: rgb(26 23 30);
+    color: rgb(243 243 243);
+}
+
+.content-info {
+    background: rgb(208 33 40);
+    padding: 20px 0;
+    color: white;
+}
+
+.btn {
+    background: none;
+    border: solid 1px;
+    position: relative;
+    color: white;
+}
+
+.title {
+    background: rgb(52, 128, 52);
+    bottom: 28px;
+    clip-path: polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%);
+    font-size: 14px;
+    font-weight: 500;
+    left: -5px;
+    line-height: 32px;
+    max-width: 99%;
+    overflow: hidden;
+    padding-left: calc(1rem + 5px);
+    padding-right: 21px;
+    position: absolute;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: -moz-fit-content;
+    width: fit-content;
+    z-index: 4;
+    margin: 0;
+    color: white;
+}

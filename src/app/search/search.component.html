@@ -3,11 +3,12 @@
         <div class="col-3">
             <aside>
                 <mat-selection-list #selected (selectionChange)="display(selected.selectedOptions.selected)"
-                    [multiple]="false">
-                    <mat-list-option [value]="'movie'">
+                    [multiple]="false" style="border-radius: 8px;
+                    box-shadow: 0 0 0 0.3px black; padding: 0;">
+                    <mat-list-option [value]="'movie'" style="box-shadow: 0 0.2px 0 0 black;">
                         <span>Movies </span> <span id="badge" class="badge bg-secondary">{{movie_lenght}}</span>
                     </mat-list-option>
-                    <mat-list-option [value]="'person'">
+                    <mat-list-option style="box-shadow: 0 0.2px 0 0 black;" [value]="'person'">
                         <span>People </span> <span id="badge" class="badge bg-secondary">{{gender_lenght}}</span>
                     </mat-list-option>
                     <mat-list-option [value]="'tv'">

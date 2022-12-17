@@ -56,6 +56,13 @@ export class InteractionsService {
     }
     return this.http.post(`${this.api_host}list/${listId}/add_item?api_key=${this.api_key}&session_id=${this.sessId}`, toList)
   }
+  remove_movie_from_list(listId, movieId) {
+    console.log(listId, movieId)
+    let toList = {
+      media_id: movieId
+    }
+    return this.http.post(`${this.api_host}list/${listId}/remove_item?api_key=${this.api_key}&session_id=${this.sessId}`, toList)
+  }
   //Get rated movies
   getAllRatedMovies(type) {
     if (type === "movie") type = "movies"

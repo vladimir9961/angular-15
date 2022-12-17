@@ -3,6 +3,7 @@
     gap: 1rem;
     overflow-x: scroll;
     overflow-y: hidden;
+    padding: 20px 0;
 
     .info {
         z-index: 2;
@@ -88,5 +89,12 @@
     .wrapper {
         flex-wrap: wrap;
         justify-content: center;
+    }
+}
+
+.wraper {
+    .switch-cards {
+        display: flex;
+        align-items: center;
     }
 }

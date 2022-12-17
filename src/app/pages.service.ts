@@ -53,4 +53,25 @@ export class PagesService {
   search(query) {
     return this.http.get(`${this.apiHost}search/multi?api_key=${this.apiKey}&language=en-US&query=${query}&page=1&include_adult=false`)
   }
+  //Get lists
+  getUserCreatedLists() {
+    return this.http.get(`${this.apiHost}account/${this.accId}/lists?api_key=${this.apiKey}&language=en-US&session_id=${this.sessId}`)
+  }
+  //Get list details
+  getListDetails(id) {
+    return this.http.get(`${this.apiHost}list/${id}?api_key=${this.apiKey}&language=en-US`)
+  }
+  //Create List
+  createList(value) {
+    console.log(value)
+    return this.http.post(`${this.apiHost}list?api_key=${this.apiKey}&session_id=${this.sessId}`, value)
+  }
+  //Get movies/tv's for add to list
+  delete_list(id) {
+    return this.http.delete(`${this.apiHost}list/${id}?api_key=${this.apiKey}&session_id=${this.sessId}`)
+  }
+  //Get movies/tv's for add to list
+  searchMovies(value) {
+    return this.http.get(`${this.apiHost}search/movie?api_key=${this.apiKey}&language=en-US&query=${value}&page=1&include_adult=false`)
+  }
 }

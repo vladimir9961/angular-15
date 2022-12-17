@@ -76,7 +76,7 @@ export class FavoriteComponent implements OnInit, OnChanges, OnDestroy {
     )
   }
   ngOnDestroy(): void {
-    this.subscribeFavorite.unsubscribe();
-    this.subscribeFavoriteGet.unsubscribe();
+    this.subscribeFavorite?.unsubscribe();
+    this.subscribeFavoriteGet?.unsubscribe();
   }
 }

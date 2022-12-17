@@ -1,8 +1,9 @@
-<div style=" width: 100%; justify-content: center;" class="container">
+<div style=" width: 100%; justify-content: center; margin-top: 10rem;" class="container">
     <div class="row" style="display: flex;">
         <div style=" overflow:hidden;" class="wraper">
-            <div style="display: flex;">
-                <h1>Popular</h1>
+            <div class="switch-cards">
+                <h1 style="font-size: 32px;
+                font-weight: 400;">Popular</h1>
                 <label class="switch">
                     <input type="checkbox" (click)="toogleMovieTv($event)">
                     <span class="slider"></span>
@@ -16,8 +17,9 @@
     </div>
     <div class="row">
         <div style=" overflow:hidden;" class="wraper">
-            <div style="display: flex;">
-                <h1>Top Rated</h1>
+            <div class="switch-cards">
+                <h1 style="font-size: 32px;
+                font-weight: 400;">Top Rated</h1>
                 <label class="switch">
                     <input type="checkbox" (click)="toogleMovieTvTopRated($event)">
                     <span class="slider"></span>

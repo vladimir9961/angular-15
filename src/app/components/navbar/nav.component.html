@@ -53,8 +53,10 @@
         </div>
     </div>
     <div style="display: flex; align-items: center;">
+        <mat-form-field class="example-full-width" style="margin-right: 5rem;">
+            <input (keydown.enter)="onKeyDownEvent($event)" matInput placeholder="Search movies, tv's,people">
+        </mat-form-field>
         <app-is-loged *ngIf="isLogged"></app-is-loged>
-        <!-- <app-login ></app-login> -->
         <div *ngIf="!isLogged" style="display: flex; gap: 0.5rem;">
             <a mat-raised-button color="primary" href="https://www.themoviedb.org/signup" target="_blank"
                 style="text-decoration: none;">Register</a>
